@@ -1,5 +1,6 @@
 import socket
 import time
+import random
 
 UDP_IP = "192.168.0.17"
 UDP_PORT= 8888
@@ -51,6 +52,22 @@ while(1): #Main Loop
     print("\n")
     print(addr)
     print("\n")
+    
+    co2value = round(random.uniform(250,400000),2)
+    print("Co2 value: ")
+    print(co2value)
+    print("\n")
+    
+    covalue = round(random.uniform(0,12800),2)
+    print("Co value: ")
+    print(covalue)
+    print("\n")
+    
+    humvalue = round(random.uniform(0,100),2)
+    print("Humidity: ")
+    print(humvalue)
+    print("\n")
+    
             
     """            
     if len(data):
