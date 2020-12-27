@@ -8,6 +8,21 @@
   /* Page Loader active */
   $('#preloader').fadeOut();
 
+  /* slider */
+  var cosiness = document.getElementById('slider-value').innerHTML;
+  var margin_need = 6*cosiness-30;
+  $('.circle').css({marginLeft: margin_need});
+  if(cosiness<33){
+    $('.circle').css({backgroundColor: '#4bc67c'});
+    $('.index-message').text('Very uncomfortable');
+  } else if (cosiness <66){
+    $('.circle').css({backgroundColor: '#f1c40f'});
+    $('.index-message').text('Normal');
+  } else{
+    $('.circle').css({backgroundColor: '#b94a48'});
+    $('.index-message').text('Alarming rate');
+  }
+
   // Sticky Nav
     $(window).on('scroll', function() {
         if ($(window).scrollTop() > 50) {

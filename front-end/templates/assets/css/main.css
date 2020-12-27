@@ -416,3 +416,73 @@ p {
   height: 200px;
   display: inline-block;
 }
+
+/*Slider */
+.slider{
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 0px;
+  margin-bottom: 100px;
+  width: 600px;
+}
+
+#WholeBar{
+  width: 600px;
+  height: 8px;
+  margin-top: 26px;
+  background-image: linear-gradient(to right, #4bc67c, #f1c40f, #b94a48);;
+  border-radius: 3px;
+  position: absolute;
+  text-align: center;
+  align-items: center;
+}
+
+#ProgressBar{
+  text-align: center;
+  width: 50%;
+  height: 8px;
+  margin-top: 26px;
+  border-radius: 3px;
+  position: absolute;
+}
+
+.circle {
+  margin-left: 270px;
+  width: 60px;
+  height: 60px;
+  line-height: 20px;
+  border-radius: 50%;
+  color: #fff;
+  text-align: center;
+  background: #f1c40f;
+  position: absolute;
+}
+
+.circle-number{
+  width: 44px;
+  height: 44px;
+  margin-top: 8px;
+  margin-left: 8px;
+  border-radius: 50%;
+  text-align: center;
+  background: white;
+  position: absolute;
+}
+
+.slider-value{
+  margin-top: 12px;
+  font-size: 20px;
+  font-style: bold;
+  text-align: center;
+  font-family:sans-serif;
+  color:grey;
+}
+
+.index-message{
+  margin-top: 0px;
+  margin-bottom: 50px;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 16px;
+  color:#585b60;
+}
