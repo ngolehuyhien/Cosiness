@@ -110,6 +110,10 @@ p {
   text-align: center;
 }
 
+#last-reading{
+  margin-bottom: 15px;
+}
+
 /* Services Item */
 .services-item {
   padding: 15px;
