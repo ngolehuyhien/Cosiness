@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <link rel="shortcut icon" href="assets/img/logo.png" type="image/x-icon" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <title>Room Data</title>
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" type="text/css" href="assets/css/bootstrap.min.css" >
+    <!-- Main Style -->
+    <link rel="stylesheet" type="text/css" href="assets/css/main.css">
+    
+  </head>
+  <body>
+
+    <!-- Header Area wrapper Starts -->
+    <header id="header-wrap">
+      <!-- Navbar Start -->
+      <nav class="navbar navbar-expand-lg fixed-top scrolling-navbar indigo">
+        <div class="container">
+          <!-- Brand and toggle get grouped for better mobile display -->
+          <div class="navbar-header">
+            <a href="index.html" class="navbar-brand">Room Data</a>
+          </div>
+          <div class="collapse navbar-collapse">
+            <ul class="navbar-nav">
+              <li class="nav-item active">
+                <a class="nav-link" href="#hero-area">
+                  Home
+                </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#indexes">
+                  Indexes
+                </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#history">
+                  Historical Data
+                </a>
+              </li>
+          </div>
+        </div>
+      </nav>
+      <!-- Navbar End -->
+
+      <!-- Hero Area Start -->
+      <div id="hero-area" class="hero-area-bg">
+        <div class="overlay" style="height: 20px;"></div>
+        <div class="container">
+          <div class="row">
+            <div class="col-md-12 col-sm-12">
+              <div class="contents text-center">
+                <h2 id="head-title" class="wow fadeInUp">All Cosiness Index Data You Need</h2>
+                
+                <div class="header-button wow fadeInUp" data-wow-delay="0.3s">
+                  <a href="#" class="btn btn-common" id="btn-refresh">Refresh Now</a>
+                </div>
+              </div>
+              
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- Hero Area End -->
+
+    </header>
+    <!-- Header Area wrapper End -->
+
+    <!-- Services Section Start -->
+    <section id="indexes" class="section-padding">
+      <div class="container">
+        <h4 id="last-reading"> Last Sensors Reading: {{ time }}</h4>
+        <div class="row">
+          <div class="col">
+            <div id="g1"></div>
+          </div>
+          <div class="col">
+            <div id="g2"></div>
+          </div>
+          <div class="col">
+            <div id="g3"></div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col">
+            <div id="g4"></div>
+          </div>
+          <div class="col">
+            <div id="g5"></div>
+          </div>
+          <div class="col">
+            <div id="g6"></div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- Services Section End -->
+    <hr>
+    <section id="history">
+      <h3> HISTORICAL DATA </h3>
+      <p> Enter number of samples to retrieve:
+      <form method="POST" class="form">
+        <input name="numSamples" value= {{numSamples}} class="form-control" id="numSample">
+        <br>
+        <input type="submit" class="btn btn-common">
+        </form></p>
+      <hr>
+      <div class="plot">
+        <img src="/plot/tempe" alt="Image Placeholder" width="49%" class="plot-chart">
+        <img src="/plot/humvalue" alt="Image Placeholder" width="49%" class="plot-chart">
+      </div>
+    </section>
+
+    <section id="copyright">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-12">
+            <p>Copyright © 2020 Developed by GENIAL Students</p>
+          </div>
+        </div>
+      </div>
+    </section>   
+    
+    <!-- jQuery-->
+    <script src="../justgage/raphael-2.1.4.min.js"></script>
+    <script src="../justgage/justgage.js"></script>
+    <!--
+      {{ tempe  }}
+      {{ light  }}
+      {{ sound  }}
+      {{ co2value  }}
+      {{ covalue  }}
+      {{ humvalue  }}
+      {{ time }}
+    -->
+    <script>
+      var g1, g2, g3, g4, g5, g6;
+      document.addEventListener("DOMContentLoaded", function(event) {
+        g1 = new JustGage({
+            id: "g1",
+            value: 45,
+            valueFontColor: "#f08821",
+            min: -10,
+            max: 100,
+            title: "TEMPERATURE",
+            pointer: true,
+            counter: true,
+            label: "Celcius Degree"
+        });
+
+        g2 = new JustGage({
+            id: "g2",
+            value: 30,
+            valueFontColor: "#71b745",
+            min: 0,
+            max: 1023,
+            title: "LIGHT",
+            pointer: true,
+            counter: true,
+            label: "lux"
+        });
+
+        g3 = new JustGage({
+            id: "g3",
+            value: 40,
+            valueFontColor: "#00afef",
+            min: 0,
+            max: 80,
+            title: "SOUND",
+            pointer: true,
+            counter: true,
+            label: "dB"
+        });
+
+        g4 = new JustGage({
+            id: "g4",
+            value: 30,
+            valueFontColor: "#6c3a8f",
+            min: 0,
+            max: 100,
+            title: "CO2 VALUE",
+            pointer: true,
+            counter: true,
+            label: "ppm"
+        });
+
+        g5 = new JustGage({
+            id: "g5",
+            value: 2700,
+            valueFontColor: "#283da7",
+            min: 250,
+            max: 40000,
+            title: "CO VALUE",
+            pointer: true,
+            counter: true,
+            label: "ppm"
+        });
+
+        g6 = new JustGage({
+            id: "g6",
+            value: 3000,
+            valueFontColor: "#b10d28",
+            min: 0,
+            max: 12800,
+            title: "HUMIDITY",
+            pointer: true,
+            counter: true,
+            label: "ppm"
+        });
+      });
+    </script>
+    <script src="assets/js/jquery-min.js"></script>
+    <script src="assets/js/main.js"></script>
+  </body>
+</html>
