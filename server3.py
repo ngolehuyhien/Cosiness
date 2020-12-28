@@ -9,23 +9,24 @@ DEST_IP ="192.168.0.3"
 DEST_PORT= 7777
  
 sock = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
+sock.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR,1)
 sock.bind((UDP_IP,UDP_PORT))
 
-dbname='sensorsData.db'
-sampleFreq = 1*60 # time in seconds ==> Sample each 1 min
+dbname='/var/www/piapp/dbfolder/sensorsData.db'
+sampleFreq = 1*3# time in seconds ==> Sample each 1 min
 
 
 # get data from DHT sensor
 def getRoomData():   
     message =b"tempe"    
-    #print("I am asking:",message)
-    #print("\n")
+    print("I am asking:",message)
+    print("\n")
     sock.sendto(message,(DEST_IP,DEST_PORT))
     data, addr = sock.recvfrom(4096)
     data = data.decode()
     tempe = float(data)
-    #print("recieved message",data)
-    #print("\n")
+    print("recieved message",data)
+    print("\n")
     #print(addr)
     #print("\n")
 
@@ -53,12 +54,12 @@ def getRoomData():
     #print(addr)
     #print("\n")
     
-    co2value = round(random.uniform(250,400000),2)
+    co2value = round(random.uniform(0,1000),2)
     #print("Co2 value: ")
     #print(co2value)
     #print("\n")
     
-    covalue = round(random.uniform(0,12800),2)
+    covalue = round(random.uniform(0,35),2)
     #print("Co value: ")
     #print(covalue)
     #print("\n")
@@ -72,7 +73,7 @@ def getRoomData():
 
 # log sensor data on database
 def insertData (tempe, light, sound, co2value, covalue, humvalue):
-    conn=sqlite3.connect(dbname)
+    conn=sqlite3.connect(dbname, check_same_thread=False)
     curs=conn.cursor()
     curs.execute("INSERT INTO Room_data values(datetime('now'), (?), (?),(?),(?),(?),(?))", (tempe, light,sound,co2value,covalue,humvalue))
     conn.commit()
@@ -91,3 +92,4 @@ def main():
 # ------------ Execute program 
 main()
         
+

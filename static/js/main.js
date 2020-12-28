@@ -11,6 +11,11 @@
   /* slider */
   var cosiness = document.getElementById('slider-value').innerHTML;
   var margin_need = 6*cosiness-30;
+  if ($(window).width() < 620) {
+    $('.slider').css({width: '300px'});
+    $('#WholeBar').css({width: '300px'});
+    margin_need = 3*cosiness-30;
+  }
   $('.circle').css({marginLeft: margin_need});
   if(cosiness<33){
     $('.circle').css({backgroundColor: '#4bc67c'});

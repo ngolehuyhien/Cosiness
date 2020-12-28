@@ -9,10 +9,11 @@ DEST_IP ="192.168.0.3"
 DEST_PORT= 7777
  
 sock = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
+sock.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR,1)
 sock.bind((UDP_IP,UDP_PORT))
 
-dbname='sensorsData.db'
-sampleFreq = 1*10# time in seconds ==> Sample each 1 min
+dbname='/var/www/piapp/dbfolder/sensorsData.db'
+sampleFreq = 1*3# time in seconds ==> Sample each 1 min
 
 
 # get data from DHT sensor
@@ -72,7 +73,7 @@ def getRoomData():
 
 # log sensor data on database
 def insertData (tempe, light, sound, co2value, covalue, humvalue):
-    conn=sqlite3.connect(dbname)
+    conn=sqlite3.connect(dbname,check_same_thread=False)
     curs=conn.cursor()
     curs.execute("INSERT INTO Room_data values(datetime('now'), (?), (?),(?),(?),(?),(?))", (tempe, light,sound,co2value,covalue,humvalue))
     conn.commit()
@@ -82,12 +83,13 @@ def insertData (tempe, light, sound, co2value, covalue, humvalue):
 
 
 # main function
-def main():
+def arduino():
     while True:
         tempe, light, sound, co2value, covalue, humvalue = getRoomData()
         insertData (tempe, light, sound, co2value, covalue, humvalue)
         time.sleep(sampleFreq)
 
 # ------------ Execute program 
-main()
+#main()
         
+

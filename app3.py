@@ -1,12 +1,18 @@
+import io
+import sqlite3
+import server2
+import threading
+
 from matplotlib.backends.backend_agg import FigureCanvasAgg as FigureCanvas
 from matplotlib.figure import Figure
-#import matplotlib
-import io
 from flask import Flask, render_template, send_file, make_response, request
+
+
 app = Flask(__name__)
-import sqlite3
-conn=sqlite3.connect('../sensorsData.db')
+
+conn=sqlite3.connect('/var/www/piapp/dbfolder/sensorsData.db', check_same_thread=False)
 curs=conn.cursor()
+
 # Retrieve LAST data from database
 def getLastData():
     for row in curs.execute("SELECT * FROM Room_data ORDER BY timestamp DESC LIMIT 1"):
@@ -19,6 +25,7 @@ def getLastData():
         humvalue = row[6]
     #conn.close()
     return time, tempe, light,sound, co2value, covalue, humvalue
+
 def getHistData (numSamples):
     curs.execute("SELECT * FROM Room_data ORDER BY timestamp DESC LIMIT "+str(numSamples))
     data = curs.fetchall()
@@ -38,6 +45,7 @@ def getHistData (numSamples):
         covalues.append(row[5])
         humvalues.append(row[6])
     return dates, tempes, lights, sounds, co2values, covalues, humvalues
+
 def maxRowsTable():
     for row in curs.execute("select COUNT(tempe) from  Room_data"):
         maxNumberRows=row[0]
@@ -45,8 +53,9 @@ def maxRowsTable():
 # define and initialize global variables
 global numSamples
 numSamples = maxRowsTable()
-if (numSamples > 101):
-    numSamples = 100
+if (numSamples > 21):
+    numSamples = 20
+
 # main route
 @app.route("/")
 def index():
@@ -62,6 +71,7 @@ def index():
         'numSamples': numSamples
     }
     return render_template('index.html', **templateData)
+
 @app.route("/", methods=['POST'])
 def my_form_post():
     global numSamples
@@ -81,13 +91,14 @@ def my_form_post():
         'numSamples': numSamples
     }
     return render_template('index.html', **templateData)
+
 @app.route("/plot/tempe")
 def plot_temp():
     times, tempes, lights, sounds, co2values, covalues, humvalues = getHistData(numSamples)
     ys = tempes
     fig = Figure()
     axis = fig.add_subplot(1, 1, 1)
-    axis.set_title("Temperature [°C]")
+    axis.set_title("Temperature [C]")
     axis.set_xlabel("Samples")
     axis.grid(True)
     xs = range(numSamples)
@@ -98,6 +109,7 @@ def plot_temp():
     response = make_response(output.getvalue())
     response.mimetype = 'image/png'
     return response
+
 @app.route("/plot/humvalue")
 def plot_hum():
     times, tempes, lights, sounds, co2values, covalues, humvalues = getHistData(numSamples)
@@ -115,5 +127,12 @@ def plot_hum():
     response = make_response(output.getvalue())
     response.mimetype = 'image/png'
     return response
+
+
 if __name__ == "__main__":
-   app.run(debug=False)
+    #t=threading.Thread(target = server2.arduino)
+    #t.daemon = True
+    #t.start()
+    app.run(host='0.0.0.0', port=80, debug=False)
+
+

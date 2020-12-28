@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <link rel="shortcut icon" href="../static/img/logo.png" type="image/x-icon" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <title>Room Data</title>
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" type="text/css" href="../static/css/bootstrap.min.css" >
+    <!-- Main Style -->
+    <link rel="stylesheet" type="text/css" href="../static/css/main.css">
+    
+  </head>
+  <body>
+
+    <!-- Header Area wrapper Starts -->
+    <header id="header-wrap">
+      <!-- Navbar Start -->
+      <nav class="navbar navbar-expand-lg fixed-top scrolling-navbar indigo top-nav-collapse">
+        <div class="container">
+          <!-- Brand and toggle get grouped for better mobile display -->
+          <div class="navbar-header">
+            <a href="/" class="navbar-brand">Room Data</a>
+          </div>
+          <div class="collapse navbar-collapse">
+            <ul class="navbar-nav">
+              <li class="nav-item">
+                <a class="nav-link" href="/">
+                  Home
+                </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="/">
+                  Indexes
+                </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link active" href="#">
+                  Historical Data
+                </a>
+              </li>
+          </div>
+        </div>
+      </nav>
+      <!-- Navbar End -->
+
+      <!-- Hero Area Start -->
+      <div id="hero-area" class="hero-area-bg">
+        <div class="overlay" style="height: 20px;"></div>
+        <div class="container">
+          <div class="row">
+            <div class="col-md-12 col-sm-12">
+              <div class="contents text-center">
+                <h2 id="head-title" class="wow fadeInUp">Historical Data</h2>
+                <p> Enter number of samples to retrieve:
+                  <form method="POST" class="form">
+                    <input name="numSamples" value= {{numSamples}} class="form-control" id="numSample">
+                    <br>
+                    <input type="submit" class="btn btn-common">
+                    </form>
+                  </p>
+              </div>
+              
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- Hero Area End -->
+
+    </header>
+    <!-- Header Area wrapper End -->
+    <section>
+      <div class="row" id="plot-area">
+        <div class="col-lg-4 col-md-6 col-sm-12">
+          <img src="/plot/tempe" alt="Image Placeholder" class="plot-chart">
+        </div>
+        <div class="col-lg-4 col-md-6 col-sm-12">
+          <img src="/plot/light" alt="Image Placeholder" class="plot-chart">
+        </div>
+        <div class="col-lg-4 col-md-6 col-sm-12">
+          <img src="/plot/sound" alt="Image Placeholder" class="plot-chart">
+        </div>
+        <div class="col-lg-4 col-md-6 col-sm-12">
+          <img src="/plot/co2value" alt="Image Placeholder" class="plot-chart">
+        </div>
+        <div class="col-lg-4 col-md-6 col-sm-12">
+          <img src="/plot/covalue" alt="Image Placeholder" class="plot-chart">
+        </div>
+        <div class="col-lg-4 col-md-6 col-sm-12">
+          <img src="/plot/humvalue" alt="Image Placeholder" class="plot-chart">
+        </div>
+      </div>
+    </section>
+
+    <section id="copyright">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-12">
+            <p>Copyright © 2020 Developed by Ngo Le Huy Hien | Fatema Mirza | Mohammad Newaj Jamil</p>
+          </div>
+        </div>
+      </div>
+    </section>  
+     
+    <script src="../static/js/jquery-min.js"></script>
+    <script src="../static/js/main.js"></script>
+  </body>
+</html>

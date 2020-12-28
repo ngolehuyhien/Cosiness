@@ -490,3 +490,25 @@ p {
   font-size: 16px;
   color:#585b60;
 }
+
+#plot-area{
+  text-align: center;
+  margin-top: 30px;
+  margin-bottom: 60px;
+  margin-left: 50px;
+  margin-right: 50px;
+}
+
+.plot-chart{
+  width: 100%;
+}
+
+@media only screen and (max-width: 500px){
+  #plot-area{
+  text-align: center;
+  margin-top: 20px;
+  margin-bottom: 30px;
+  margin-left: 10px;
+  margin-right: 10px;
+}
+}
