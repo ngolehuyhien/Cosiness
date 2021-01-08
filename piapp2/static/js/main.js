@@ -10,22 +10,61 @@
 
   /* slider */
   var cosiness = document.getElementById('slider-value').innerHTML;
-  var margin_need = 6*cosiness-30;
+  var margin_need = 600*cosiness-30;
   if ($(window).width() < 620) {
     $('.slider').css({width: '300px'});
     $('#WholeBar').css({width: '300px'});
-    margin_need = 3*cosiness-30;
+    margin_need = 300*cosiness-30;
   }
   $('.circle').css({marginLeft: margin_need});
-  if(cosiness<33){
+  if(cosiness<=0.25){
     $('.circle').css({backgroundColor: '#4bc67c'});
-    $('.index-message').text('Very uncomfortable');
-  } else if (cosiness <66){
-    $('.circle').css({backgroundColor: '#f1c40f'});
-    $('.index-message').text('Normal');
-  } else{
+    $('#index-message').append('<b>comfortable<b/>.');
+  } else if (cosiness > 0.25 && cosiness<=0.50){
+    $('.circle').css({backgroundColor: '#dac41d'});
+    $('#index-message').append('<b>very comfortable</b>.');
+  } else if (cosiness > 0.50 && cosiness<=0.75){
+    $('.circle').css({backgroundColor: '#d4852b'});
+    $('#index-message').append('<b>uncomfortable</b>.');
+  } else {
     $('.circle').css({backgroundColor: '#b94a48'});
-    $('.index-message').text('Alarming rate');
+    $('#index-message').append('<b>very uncomfortable</b>.');
+  }
+
+  var humidex = document.getElementById('humidex-value').innerHTML;
+  var margin_humidex = 300*humidex-25;
+  $('#humidex-circle').css({marginLeft: margin_humidex});
+  $('#humidex-bar').css({width: margin_humidex});
+  if(humidex<=0.33){
+    $('#humidex-message').append("<b>low<b/>");
+  } else if (humidex>0.33 && humidex<=0.66){
+    $('#humidex-message').append("<b>medium</b>");
+  } else {
+    $('#humidex-message').append("<b>high</b>");
+  }
+
+  var air= document.getElementById('air-value').innerHTML;
+  var margin_air = 300*air-25;
+  $('#air-circle').css({marginLeft: margin_air});
+  $('#air-bar').css({width: margin_air});
+  if(air<=0.33){
+    $('#air-message').append("<b>good<b/>");
+  } else if (air>0.33 && air<=0.66){
+    $('#air-message').append("<b>acceptable</b>");
+  } else {
+    $('#air-message').append("<b>unacceptable</b>");
+  }
+
+  var environment = document.getElementById('environment-value').innerHTML;
+  var margin_environment = 300*environment-25;
+  $('#environment-circle').css({marginLeft: margin_environment});
+  $('#environment-bar').css({width: margin_environment});
+  if(environment<=0.33){
+    $('#environment-message').append("<b>good<b/>");
+  } else if (environment>0.33 && environment<=0.66){
+    $('#environment-message').append("<b>acceptable</b>");
+  } else {
+    $('#environment-message').append("<b>alarming</b>");
   }
 
   // Sticky Nav

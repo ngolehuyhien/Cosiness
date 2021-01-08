@@ -1,0 +1,193 @@
+{
+  "x1": {
+    "antecedent_id": "x1",
+    "antecedent_name": "Temperature",
+    "attribute_weight": "1",
+    "ref_val": [
+      "26",
+      "20",
+      "0"
+    ],
+    "ref_title": [
+      "High",
+      "Good",
+      "Low"
+    ],
+    "parent": "x7",
+    "input_val": "",
+    "is_input": "true"
+  },
+
+  "x2": {
+    "antecedent_id": "x2",
+    "antecedent_name": "Humidity",
+    "attribute_weight": "1",
+    "ref_val": [
+      "50",
+      "30",
+      "0"
+    ],
+    "ref_title": [
+      "High",
+      "Good",
+      "Low"
+    ],
+    "parent": "x7",
+    "input_val": "",
+    "is_input": "true"
+  },
+
+  "x3": {
+    "antecedent_id": "x3",
+    "antecedent_name": "CO2",
+    "attribute_weight": "1",
+    "ref_val": [
+      "1000",
+      "250"
+    ],
+    "ref_title": [
+      "Bad",
+      "Normal"
+    ],
+    "parent": "x8",
+    "input_val": "",
+    "is_input": "true"
+  },
+
+  "x4": {
+    "antecedent_id": "x4",
+    "antecedent_name": "CO",
+    "attribute_weight": "1",
+    "ref_val": [
+      "35",
+      "9",
+      "0"
+    ],
+    "ref_title": [
+      "Bad",
+      "Acceptable",
+      "Good"
+    ],
+    "parent": "x8",
+    "input_val": "",
+    "is_input": "true"
+  },
+
+  "x5": {
+    "antecedent_id": "x5",
+    "antecedent_name": "Light",
+    "attribute_weight": "1",
+    "ref_val": [
+      "750",
+      "200",
+      "0"
+    ],
+    "ref_title": [
+      "Alarming",
+      "Good",
+      "Not Good"
+    ],
+    "parent": "x9",
+    "input_val": "",
+    "is_input": "true"
+  },
+
+  "x6": {
+    "antecedent_id": "x6",
+    "antecedent_name": "Sound",
+    "attribute_weight": "1",
+    "ref_val": [
+      "70",
+      "40",
+      "0"
+    ],
+    "ref_title": [
+      "Bad",
+      "Acceptable",
+      "Good"
+    ],
+    "parent": "x9",
+    "input_val": "",
+    "is_input": "true"
+  },
+  
+  "x7": {
+    "antecedent_id": "x7",
+    "antecedent_name": "Humidex",
+    "attribute_weight": "1",
+    "ref_val": [
+      "1",
+      "0.5",
+      "0"
+    ],
+    "ref_title": [
+      "High",
+      "Medium",
+      "Low"
+    ],
+    "parent": "x10",
+    "input_val": "",
+    "is_input": "false"
+  },
+  
+  "x8": {
+    "antecedent_id": "x8",
+    "antecedent_name": "Air quality index",
+    "attribute_weight": "1",
+    "ref_val": [
+      "1",
+      "0.5",
+      "0"
+    ],
+    "ref_title": [
+      "High",
+      "Medium",
+      "Low"
+    ],
+    "parent": "x10",
+    "input_val": "",
+    "is_input": "false"
+  },
+  
+  "x9": {
+    "antecedent_id": "x9",
+    "antecedent_name": "External environment index",
+    "attribute_weight": "1",
+    "ref_val": [
+      "1",
+      "0.5",
+      "0"
+    ],
+    "ref_title": [
+      "High",
+      "Medium",
+      "Low"
+    ],
+    "parent": "x10",
+    "input_val": "",
+    "is_input": "false"
+  },
+
+  "x10": {
+    "antecedent_id": "x10",
+    "antecedent_name": "Coziness index",
+    "attribute_weight": "1",
+    "ref_val": [
+      "1",
+      "0.75",
+      "0.50",
+      "0.25",
+      "0"
+    ],
+    "ref_title": [
+      "Very Uncomfortable",
+      "Uncomfortable",
+      "Very Comfortable",
+      "Comfortable",
+      "Cool"
+    ],
+    "parent": "x10",
+    "input_val": "",
+    "is_input": "false"
+  }
+}
