@@ -673,3 +673,13 @@ p {
   text-decoration: none;
   cursor: pointer;
 }
+
+.discover-url {
+  color: white;
+  font-style: italic;
+}
+
+.discover-url:hover {
+  color: white;
+  font-style: bold;
+}

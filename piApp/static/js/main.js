@@ -17,13 +17,13 @@
     margin_need = 300*cosiness-30;
   }
   $('.circle').css({marginLeft: margin_need});
-  if(cosiness<=0.25){
+  if(cosiness<=0.35){
     $('.circle').css({backgroundColor: '#4bc67c'});
     $('#index-message').append('<b>comfortable<b/>.');
-  } else if (cosiness > 0.25 && cosiness<=0.50){
+  } else if (cosiness > 0.35 && cosiness<=0.70){
     $('.circle').css({backgroundColor: '#dac41d'});
     $('#index-message').append('<b>very comfortable</b>.');
-  } else if (cosiness > 0.50 && cosiness<=0.75){
+  } else if (cosiness > 0.70 && cosiness<=0.85){
     $('.circle').css({backgroundColor: '#d4852b'});
     $('#index-message').append('<b>uncomfortable</b>.');
   } else {

@@ -1,41 +1,60 @@
 <!DOCTYPE html>
-   <head>
-      <title>Room data </title>
-      <link rel="stylesheet" href='../static/style.css'/>
-   </head>
-   <body>
-	<h3> Total Number of data: {{totalData}} </h3>
-	<hr>
-	<h3> DATA to View </h3>
-	<p> Enter number of samples to retrieve:
-	<form method="POST">
-		<input name="numSamples" value= {{numSamples}}>
-		<input type="submit">
-		</form></p>
-	<hr>
-	 <table border = 1>
+<head>
+   <meta charset="utf-8">
+   <link rel="shortcut icon" href="../static/logo.png" type="image/x-icon" />
+   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+   <title>Room Data Admin</title>
+   <link rel="stylesheet" href='../static/style.css'/>
+</head>
+<body>
+   <header class="topnav">
+      <a class="active" id="admin" href="/"><img src="../static/home.png" width="26px">  Admin Page</a>
+      <a class="active" href="/">Data View</a>
+      <a href="/deletedesc">Delete Last Rows</a>
+      <a href="/deleteasc">Delete First Rows</a>
+   </header>
+
+   <div class="center">
+      <h2> Data View </h2>
+      <h3> Total number of data: {{totalData}} </h3>
+
+      <p> Enter number of samples to retrieve:
+         <form method="POST">
+            <input type="text" name="numSamples" value= {{numSamples}}>
+            <br>
+            <input type="submit">
+         </form>
+      </p>
+   </div>
+
+   <div class="wraper">
+      <table class="styled-table">
          <thead>
-            <td>Timestamp</td>
-            <td>Temperature</td>
-            <td>Light</td>
-            <td>Sound</td>
-	    <td>CO2</td>
-            <td>CO</td>
-            <td>Humidity</td>
+            <tr>
+               <th>Timestamp</th>
+               <th>Temperature</th>
+               <th>Light</th>
+               <th>Sound</th>
+               <th>CO2</th>
+               <th>CO</th>
+               <th>Humidity</th>
+            </tr>
          </thead>
-         
-         {% for row in data %}
+         <tbody>
+            {% for row in data %}
             <tr>
                <td>{{row[0]}}</td>
                <td>{{row[1]}}</td>
                <td>{{row[2]}}</td>
                <td>{{row[3]}}</td>
-	       <td>{{row[4]}}</td>
-	       <td>{{row[5]}}</td>
-	       <td>{{row[6]}}</td>
+               <td>{{row[4]}}</td>
+               <td>{{row[5]}}</td>
+               <td>{{row[6]}}</td>
             </tr>
-         {% endfor %}
+            {% endfor %}
+         </tbody>  
       </table>
-      <hr>
-   </body>
+   </div>
+</body>
 </html>

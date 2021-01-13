@@ -1,13 +1,16 @@
 import io
+import time
 import sqlite3
-import server2
-import threading
-#from datetime import datetime
+
+from threading import Lock
+
 
 from matplotlib.backends.backend_agg import FigureCanvasAgg as FigureCanvas
 from matplotlib.figure import Figure
 from flask import Flask, render_template, send_file, make_response, request
 from tree_traversal_bottom_up import brb_algorithm
+
+lock = Lock()
 
 app = Flask(__name__)
 
@@ -28,8 +31,13 @@ def getLastData():
     return time, tempe, light,sound, co2value, covalue, humvalue
 
 def getHistData (numSamples):
-    curs.execute("SELECT * FROM Room_data ORDER BY timestamp DESC LIMIT "+str(numSamples))
-    data = curs.fetchall()
+    try:
+        lock.acquire(True)
+        curs.execute("SELECT * FROM Room_data ORDER BY timestamp DESC LIMIT "+str(numSamples))
+        data = curs.fetchall()
+    finally:
+        lock.release()
+    
     dates = []
     tempes = []
     lights = []
@@ -52,34 +60,14 @@ def maxRowsTable():
         maxNumberRows=row[0]
     return maxNumberRows
 
-"""
-def freqSample():
-    times, tempes, lights, sounds, co2values, covalues, humvalues = getHistData (2)
-    fmt = '%Y-%m-%d %H:%M:%S'
-    tstamp0 = datetime.strptime(times[0], fmt)
-    tstamp1 = datetime.strptime(times[1], fmt)
-    freq = tstamp1-tstamp0
-    print(freq)
-    print("/n")
-    freq = int(round(freq.total_seconds()))
-    print(freq)
-    print("/n")
-    return (freq)
-"""
+
 # define and initialize global variables
 global numSamples
 numSamples = maxRowsTable()
-if (numSamples > 101):
-    numSamples = 100
-
-"""
-global freqSamples
-freqSamples = freqSample()
+if (numSamples > 21):
+    numSamples = 20
 
 
-global rangeTime
-rangeTime = 100
-"""
 # main route
 @app.route("/")
 def index():
@@ -285,7 +273,8 @@ def plot_covalue():
     return response
 
 if __name__ == "__main__":
-    t=threading.Thread(target = server2.arduino)
-    t.daemon = True
-    t.start()
-    app.run(host='0.0.0.0',debug=True, port = 1111, use_reloader=False)
+    #t=threading.Thread(target = server2.arduino)
+    #t.daemon = True
+    #t.start()
+    #app.run(host='0.0.0.0',debug=True, port = 1111, use_reloader=False)
+    app.run(host = '127.0.0.3', port = 1111)

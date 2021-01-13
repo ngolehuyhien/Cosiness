@@ -1,17 +1,39 @@
 <!DOCTYPE html>
-   <head>
-      <title>Room data </title>
-      <link rel="stylesheet" href='../static/style.css'/>
-   </head>
-   <body>
-	<hr>
-	<h3> DATA to delete (Ascending Order) </h3>
-	<p> Enter number of samples to delete:
-	<form method="POST">
-		<input name="numSamples2" value= {{numSamples2}}>
-		<input type="submit">
-		</form></p>
-	<hr>
-	 <p> Message: {{data2}} </p>
-   </body>
+<head>
+	<meta charset="utf-8">
+	<link rel="shortcut icon" href="../static/logo.png" type="image/x-icon" />
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+ 
+	<title>Room Data Admin</title>
+	<link rel="stylesheet" href='../static/style.css'/>
+</head>
+<body>
+	<header class="topnav">
+		<a class="active" id="admin" href="/"><img src="../static/home.png" width="26px">  Admin Page</a>
+		<a href="/">Data View</a>
+		<a href="/deletedesc">Delete Last Rows</a>
+		<a class="active" href="/deleteasc">Delete First Rows</a>
+	</header>
+
+	<div class="center">
+		<h2> Delete Data (Ascending Order)</h2>  
+		<h3> Total number of data: {{totalData}} </h3>
+
+		<p> Enter number of first rows to delete:
+		   <form method="POST">
+			  <input type="text" name="numSamples2" value= {{numSamples2}}>
+			  <br>
+			  <input type="submit">
+		   </form>
+		</p>
+		<p id="message">Message: {{data2}}</p>
+	</div>
+
+	<script>
+		var message_get = document.getElementById("message");
+		if(message_get.innerHTML=="Message: " ){
+			message_get.style.display = "none";
+		}
+	</script>
+</body>
 </html>

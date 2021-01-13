@@ -1,19 +1,124 @@
+@import url("https://fonts.googleapis.com/css?family=Montserrat:400,500,700");
+html {
+	overflow-x: hidden;
+	font: outline;
+}
+
 body{
-	background: blue;
-	color: yellow;
-	padding:1%
+	margin: 0px;
+	font-family: sans-serif;
 }
-.button {
-	font: bold 15px Arial;
+/* Navigation Bar */
+.topnav {
+	width: 100%;
+	float: left;
+	margin: 0 0 1em 0;
+	padding: 0;
+	font-family: 'Montserrat', sans-serif;
+}
+
+.topnav a {
+	float: left;
+	color: #5c5c5c;
+	text-align: center;
+	padding: 14px 50px 18px;
 	text-decoration: none;
-	background-color: #EEEEEE;
-	color: #333333;
-	padding: 2px 6px 2px 6px;
-	border-top: 1px solid #CCCCCC;
-	border-right: 1px solid #333333;
-	border-bottom: 1px solid #333333;
-	border-left: 1px solid #CCCCCC;
+	font-size: 0.9em;
+	font-weight: bolder;
 }
-img{
-	display: display: inline-block
+
+.topnav a:hover {
+	background-color: #d9d9d9;
+	color: black;
+}
+
+.topnav a.active {
+	background-color: #fb6e14;
+	color: white;
+}
+
+.topnav a.active:hover{
+	background-color:#e36200;
+}
+
+#admin{
+	background-color:#e36200;
+}
+
+.wraper{
+	padding:1%;
+}
+/* Table */
+.styled-table {
+    border-collapse: collapse;
+    margin: 25px 0;
+    font-size: 0.9em;
+    min-width: 400px;
+	box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+	width: 100%;
+}
+
+.styled-table thead tr {
+    background-color:black;
+    color: #ffffff;
+    text-align: left;
+}
+
+.styled-table th,
+.styled-table td {
+    padding: 12px 15px;
+}
+
+.styled-table tbody tr {
+    border-bottom: 1px solid #dddddd;
+}
+
+.styled-table tbody tr:nth-of-type(even) {
+    background-color: #f3f3f3;
+}
+
+.styled-table tbody tr:last-of-type {
+    border-bottom: 2px solid black;
+}
+/* Form */
+.center{
+	text-align: center;
+	font-family: 'Montserrat', sans-serif;
+	background: url("../static/classroom.jpg");
+	padding-bottom: 20px;
+	color: white;
+	float: left;
+	width: 100%;
+	margin-top: -20px;
+}
+
+input[type=text] {
+	width: 500px;
+	max-width: 60%;
+	height: 40px;
+	text-align: center;
+	padding: 12px 20px;
+	border: 1px solid #ccc;
+	border-radius: 4px;
+	box-sizing: border-box;
+	margin-top: 4px;
+	margin-bottom: 16px;
+	color: #1c1c1c;
+}
+
+input:focus{
+    outline: none;
+}
+  
+input[type=submit] {
+	background-color:#fb6e14;
+	color: white;
+	padding: 12px 20px;
+	border: none;
+	border-radius: 6px;
+	cursor: pointer;
+}
+
+input[type=submit]:hover {
+	background-color:#e36200;
 }
